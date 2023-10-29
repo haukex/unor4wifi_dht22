@@ -79,7 +79,8 @@ window.addEventListener('DOMContentLoaded', () => {
             fetch_timer_id = NaN
         }
         if ( upd_enable.checked ) {
-            const upd_interv_ms = upd_interv.valueAsNumber*1000
+            let upd_interv_ms = upd_interv.valueAsNumber*1000
+            if (!upd_interv_ms || upd_interv_ms<2000) upd_interv_ms=2000;
             console.debug("Starting fetch timer, interval "+upd_interv_ms)
             fetch_timer_id = window.setInterval( fetch_sensordata, upd_interv_ms )
         }
