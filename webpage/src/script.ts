@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // options controlling the dynamic fetching of sensor data
     let fetch_timer_id :number = NaN
     const update_settings = () => {
-        if ( isNaN(fetch_timer_id) ) {
+        if ( !isNaN(fetch_timer_id) ) {
             console.debug("Stopping fetch timer")
             window.clearInterval(fetch_timer_id)
             fetch_timer_id = NaN
