@@ -1,0 +1,21 @@
+{
+  "source": "src/index.html",
+  "browserslist": "defaults",
+  "parcelIgnore": [
+    "sensor.json"
+  ],
+  "scripts": {
+    "start": "parcel --open",
+    "build": "parcel build",
+    "test": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "@types/webpack-env": "^1.18.3",
+    "parcel": "^2.10.1",
+    "@parcel/config-default": "^2.10.1",
+    "@parcel/transformer-typescript-tsc": "^2.10.1",
+    "parcel-resolver-ignore": "^2.1.5",
+    "simpledotcss": "^2.2.1"
+  }
+}

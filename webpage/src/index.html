@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<!-- Main HTML File.
+
+This file is a part of: Arduino Uno R4 WiFi with DHT22 Sensor, https://github.com/haukex/unor4wifi_dht22
+
+This work © 2023 by Hauke Dämpfling (haukex@zero-g.net) is licensed under Attribution-ShareAlike 4.0
+International. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/
+-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DHT22 Sensor</title>
+    <style>
+      /* Sending the page to the browser is slow (1-2s), this seems to be the reason for an FOUC
+        (https://en.wikipedia.org/wiki/Flash_of_unstyled_content) that I haven't been able to work around yet. */
+
+        /* https://simplecss.org/demo https://test.simplecss.org/ https://github.com/kevquirk/simple.css/wiki/Utility-elements-and-classes */
+      @import '../node_modules/simpledotcss/simple.css'; /* parcel will inline and minify this */
+      /* Plus a few tweaks to reduce some of the vertical space (margins/padding) on mobile */
+      @media only screen and (max-width: 720px) {  /* same condition as simple.css uses */
+        body > header { padding-bottom: .5rem }
+        section:first-child { margin-top: 1rem }
+        body > footer { margin-top: 1rem; padding-top: 1rem }
+      }
+
+      /* borrow a few classes from Bootstrap */
+      .text-danger { color: rgb(220, 53, 69) }
+      .text-success { color: rgb(25, 135, 84) }
+      .text-info-emphasis { color: rgb(5, 81, 96) }
+      @media (prefers-color-scheme: dark) {
+        .text-info-emphasis { color: rgb(110, 223, 246) }
+      }
+      .d-none { display: none }
+
+      /* custom classes */
+      .sensdata-grid {
+        display: grid;
+        width: fit-content;
+        grid-template-columns: 1fr auto 1fr;
+      }
+      .sensdata-col1 {
+        text-align: end;
+      }
+      .sensdata-col2 {
+        margin: 0 1rem;
+      }
+      #upd_interv {
+        /* override simple.css's "@media only screen and (max-width: 720px) { width: 100% } in this case */
+        width: auto;
+      }
+    </style>
+    <script type="module">import "./script.ts";</script> <!-- parcel will inline and minify this -->
+  </head>
+  <body>
+
+    <header>
+      <h1>DHT22</h1>
+      <p>Temperature and Humidity Sensor on an Arduino Uno R4 WiFi</p>
+    </header>
+
+    <main>
+
+      <section>
+        <noscript>
+          <div class="notice">⚠️ This requires JavaScript. To see the raw data, you can fetch <a href="/sensor.json">sensor.json</a>.</div>
+        </noscript>
+        <article>
+          <header><h2>Sensor Data</h2></header>
+          <div id="sensdata_err" class="notice text-danger d-none"></div>
+          <div class="sensdata-grid">
+            <!-- row 1 -->
+            <div class="sensdata-col1">Temperature:</div>
+            <div class="sensdata-col2"><strong class="text-info-emphasis" id="val_temp_c"   >…</strong></div>
+            <div class="sensdata-col3">°C</div>
+            <!-- row 2 -->
+            <div class="sensdata-col1">Humidity:</div>
+            <div class="sensdata-col2"><strong class="text-info-emphasis" id="val_humid_p"  >…</strong></div>
+            <div class="sensdata-col3">%</div>
+            <!-- row 4 -->
+            <div class="sensdata-col1">Heat Index:</div>
+            <div class="sensdata-col2"><strong class="text-info-emphasis" id="val_heatidx_c">…</strong></div>
+            <div class="sensdata-col3">°C</div>
+            <!-- row 5 -->
+            <div class="sensdata-col1">Timestamp:</div>
+            <div class="sensdata-col2" style="grid-column: span 2;"><span id="val_age_ms"   >…</span></div>
+          </div>
+          <div style="margin-top: 1rem;">
+            <label style="display: inline;"><input type="checkbox" id="upd_enable" checked> Dynamic updates</label>
+						<label style="display: inline;">every <input type="number" id="upd_interv" min="2" value="5" size="4"> seconds</label>,
+            or <button id="upd_now" disabled>Update now</button>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <details>
+          <summary>Debug stuff</summary>
+          <div>
+            <button id="testpost">Test POST</button>
+            <code style="margin-left: 1rem;" id="testpost_result"></code>
+          </div>
+        </details>
+      </section>
+
+    </main>
+
+    <footer>
+        <p>This work © 2023 by Hauke Dämpfling is licensed under
+          <a href="http://creativecommons.org/licenses/by-sa/4.0/" title="Attribution-ShareAlike 4.0 International"
+          target="_blank">CC BY-SA 4.0</a>.<br>
+          <a href="https://github.com/haukex/unor4wifi_dht22" target="_blank">https://github.com/haukex/unor4wifi_dht22</a></p>
+    </footer>
+
+  </body>
+</html>
