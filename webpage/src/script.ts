@@ -38,6 +38,12 @@ window.addEventListener('DOMContentLoaded', () => {
     let fetch_in_progress = false
     const fetch_sensordata = async () => {
         if (fetch_in_progress) return
+        if (!document.hasFocus()) {
+            //TODO Later: For long update intervals, it would be nice if the update
+            // was performed immediately after the document gets focus again.
+            console.debug("Skipping fetch b/c document does not have focus")
+            return
+        }
         fetch_in_progress = true
         try {
             upd_now.disabled = true
