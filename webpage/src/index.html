@@ -47,7 +47,7 @@ International. To view a copy of this license, visit http://creativecommons.org/
       }
       #upd_interv {
         /* override simple.css's "@media only screen and (max-width: 720px) { width: 100% } in this case */
-        width: auto;
+        width: 5rem;
       }
     </style>
     <script type="module">import "./script.ts";</script> <!-- parcel will inline and minify this -->
@@ -87,7 +87,7 @@ International. To view a copy of this license, visit http://creativecommons.org/
           </div>
           <div style="margin-top: 1rem;">
             <label style="display: inline;"><input type="checkbox" id="upd_enable" checked> Dynamic updates</label>
-						<label style="display: inline;">every <input type="number" id="upd_interv" min="2" value="5" size="4"> seconds</label>,
+						<label style="display: inline;">every <input type="number" id="upd_interv" min="2" value="5"> seconds</label>,
             or <button id="upd_now" disabled>Update now</button>
           </div>
         </article>
