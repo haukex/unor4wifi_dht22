@@ -89,11 +89,9 @@ window.addEventListener('DOMContentLoaded', () => {
     upd_enable.addEventListener('change', update_settings)
     upd_enable.addEventListener('change', () => {
         if ( upd_enable.checked ) {
-            upd_interv.disabled = false
             upd_now.disabled = true
         }
         else {
-            upd_interv.disabled = true
             if ( !fetch_in_progress ) upd_now.disabled = false
         }
     })
