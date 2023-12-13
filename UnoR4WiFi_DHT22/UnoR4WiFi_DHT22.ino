@@ -11,6 +11,7 @@
 const String VERSION = String("$Id$").substring(5,13);
 
 //TODO Later: I should check that the places in this code that use millis() won't blow up on its overflow.
+//TODO: The WiFi connection seems to randomly crash after a few days, requiring a full power cycle.
 
 #define delayMilliseconds(x)   delay(x)
 
@@ -369,7 +370,7 @@ void init_wifi() {
           halt("Creating Access Point failed");
         else {
           Serial.println(F("Creating Access Point failed, retrying in 5s"));
-          delay(5000);
+          delayMilliseconds(5000);
         }
       }
       else break;
